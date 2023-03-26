@@ -11,7 +11,7 @@ import com.example.ghostgame.model.Grid
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun GameGrid(grid: Grid) {
+fun GameGrid(grid: Grid, onGridItemClicked: (Int, Int) -> Unit) {
     LazyVerticalGrid(
         cells = GridCells.Fixed(grid.width),
         contentPadding = PaddingValues(16.dp),
@@ -21,7 +21,7 @@ fun GameGrid(grid: Grid) {
         items(grid.height * grid.width) { index ->
             val row = index / grid.height
             val column = index % grid.width
-            GhostCard(cardData = grid.ghostPositions[row][column].cardData)
+            GhostCard(grid.ghostPositions[row][column], onGridItemClicked)
         }
     }
 }

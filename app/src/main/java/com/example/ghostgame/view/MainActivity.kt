@@ -24,13 +24,10 @@ class MainActivity : ComponentActivity() {
         viewModel = MainViewModel()
         setContent {
             GhostGameTheme {
-                // A surface container using the 'background' color from the theme
-                val state by viewModel.state.collectAsState()
                 Surface(
                     modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colors.background
                 ) {
-                    MainScreen(state = state)
+                    MainScreen(viewModel)
                 }
             }
         }

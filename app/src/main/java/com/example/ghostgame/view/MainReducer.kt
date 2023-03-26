@@ -2,6 +2,7 @@ package com.example.ghostgame.view
 
 import com.example.ghostgame.view.model.GameEvent
 import com.example.ghostgame.view.model.GameState
+import com.example.ghostgame.view.model.StartButtonClicked
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
@@ -15,11 +16,15 @@ class MainReducer(initialState: GameState) {
         reduce(_state.value, event)
     }
 
-    fun setState(newState: GameState){
+    private fun setState(newState: GameState){
         _state.tryEmit(newState)
     }
 
     private fun reduce(oldState: GameState, event: GameEvent) {
-
+        when(event){
+            is StartButtonClicked-> {
+                setState(oldState.copy(gridShowing = true, startButtonShowing = false))
+            }
+        }
     }
 }

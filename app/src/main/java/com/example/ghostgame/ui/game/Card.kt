@@ -19,21 +19,28 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import com.example.ghostgame.model.GameCard
-import com.example.ghostgame.ui.theme.GameCellDefault
+import com.example.ghostgame.model.GridCell
 
 const val CELL_WIDTH = 72
 const val CELL_HEIGHT = 72
 
 @Composable
-fun GhostCard(cardData: GameCard) {
+fun GhostCard(cellData: GridCell, onCardClicked: (Int, Int) -> Unit) {
     var isAnswerRevealed by remember { mutableStateOf(false) }
+    var clicked by remember {
+        mutableStateOf(false)
+    }
     val backgroundColor =
-        if (isAnswerRevealed) cardData.revealedBackgroundColor else cardData.defaultBackgroundColor
+        if (isAnswerRevealed) cellData.cardData.revealedBackgroundColor
+        else cellData.cardData.defaultBackgroundColor
     Box(
         modifier = Modifier
             .clickable {
-                isAnswerRevealed = !isAnswerRevealed
+                if (!clicked) {
+                    onCardClicked(cellData.coords.x, cellData.coords.y)
+                    isAnswerRevealed = !isAnswerRevealed
+                    clicked = true
+                }
             }
             .background(
                 backgroundColor, shape = RectangleShape
@@ -44,8 +51,10 @@ fun GhostCard(cardData: GameCard) {
 
     ) {
         AnimatedVisibility(visible = isAnswerRevealed, enter = fadeIn(), exit = fadeOut()) {
-            Image(painter = painterResource(id = cardData.iconRes), contentDescription = "ghost")
+            Image(
+                painter = painterResource(id = cellData.cardData.iconRes),
+                contentDescription = "ghost"
+            )
         }
     }
-
 }
