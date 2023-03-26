@@ -17,3 +17,4 @@ val Blue = Color(0xFF78E2F3)
 val GameCellGhost = Blue
 
 val Grey = Color(0x66000000)
+val GameCellDefault = Grey
