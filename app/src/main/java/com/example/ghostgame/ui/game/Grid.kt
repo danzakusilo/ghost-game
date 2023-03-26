@@ -15,8 +15,8 @@ fun GameGrid(grid: Grid, onGridItemClicked: (Int, Int) -> Unit) {
     LazyVerticalGrid(
         cells = GridCells.Fixed(grid.width),
         contentPadding = PaddingValues(16.dp),
-        horizontalArrangement = Arrangement.spacedBy(8.dp),
-        verticalArrangement = Arrangement.spacedBy(16.dp)
+        horizontalArrangement = Arrangement.spacedBy(4.dp),
+        verticalArrangement = Arrangement.spacedBy(4.dp)
     ) {
         items(grid.height * grid.width) { index ->
             val row = index / grid.height

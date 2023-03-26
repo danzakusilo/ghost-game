@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">GhostGame</string>
+    <string name="restart">Restart</string>
 </resources>

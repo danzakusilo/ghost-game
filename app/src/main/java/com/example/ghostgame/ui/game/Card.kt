@@ -9,6 +9,7 @@ import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -16,6 +17,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Outline.Rounded
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
@@ -43,7 +45,7 @@ fun GhostCard(cellData: GridCell, onCardClicked: (Int, Int) -> Unit) {
                 }
             }
             .background(
-                backgroundColor, shape = RectangleShape
+                backgroundColor, shape = RoundedCornerShape(4.dp)
             )
             .width(CELL_WIDTH.dp)
             .height(CELL_HEIGHT.dp),

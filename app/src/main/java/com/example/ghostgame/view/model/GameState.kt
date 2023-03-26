@@ -8,8 +8,9 @@ data class GameState(
     val currentLevel: Level,
     val currentGrid: Grid,
     val playerPoints: Int,
-    val ghostsRevealedInt: Int,
-    val ghostsRemaining: Int
+    val ghostsRevealed: Int,
+    val ghostsRemaining: Int,
+    val clicksRemaining: Int
 ) {
     companion object {
         fun initial() = GameState(
@@ -19,7 +20,8 @@ data class GameState(
             currentGrid = Level1.generateGrid(),
             playerPoints = 0,
             ghostsRemaining = 0,
-            ghostsRevealedInt = Level1.ghostCount
+            ghostsRevealed = Level1.ghostCount,
+            clicksRemaining = Level1.ghostCount
         )
     }
 }
