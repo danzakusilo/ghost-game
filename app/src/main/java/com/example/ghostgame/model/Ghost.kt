@@ -15,4 +15,18 @@ sealed class GameCard(
 
 object CardWrong : GameCard(R.drawable.ic_ghost_wrong, GameCellDefault, GameCellWrong)
 
-class Ghost(@DrawableRes ghostIconRes: Int) : GameCard(ghostIconRes, GameCellDefault, GameCellGhost)
+object CardEmpty: GameCard(R.drawable.ic_ghost_wrong, GameCellDefault, GameCellDefault)
+
+class CardCorrect(@DrawableRes ghostIconRes: Int) :
+    GameCard(ghostIconRes, GameCellDefault, GameCellGhost) {
+
+    private val ghostImages = listOf(
+        R.drawable.ic_ghost_1,
+        R.drawable.ic_ghost_2,
+        R.drawable.ic_ghost_3,
+        R.drawable.ic_ghost_4,
+        R.drawable.ic_ghost_5
+    )
+
+    fun getGhostImage() = ghostImages.random()
+}
