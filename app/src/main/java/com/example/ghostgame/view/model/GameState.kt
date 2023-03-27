@@ -4,7 +4,6 @@ import com.example.ghostgame.model.Grid
 
 data class GameState(
     val needToPreviewGhosts: Boolean,
-    val gridShowing: Boolean,
     val startButtonShowing: Boolean,
     val currentLevel: Level,
     val currentGrid: Grid,
@@ -14,14 +13,17 @@ data class GameState(
     val showGameWon: Boolean,
     val showGameLost: Boolean,
     val showGrid: Boolean,
+    val showSplashImage: Boolean,
     val showNextLevelScreen: Boolean
 ) {
     companion object {
-        fun initial() = getNextClearLevelState(Level1, 0)
+        fun initial() = getNextClearLevelState(Level1, 0).copy(
+            showSplashImage = true,
+            showGrid = false
+        )
 
         fun getNextClearLevelState(level: Level, points: Int) = GameState(
             needToPreviewGhosts = true,
-            gridShowing = false,
             startButtonShowing = false,
             currentLevel = level,
             currentGrid = level.generateGrid(),
@@ -31,7 +33,8 @@ data class GameState(
             showGameWon = false,
             showGameLost = false,
             showGrid = true,
-            showNextLevelScreen = false
+            showNextLevelScreen = false,
+            showSplashImage = false
         )
     }
 }

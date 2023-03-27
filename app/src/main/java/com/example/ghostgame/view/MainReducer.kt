@@ -9,10 +9,13 @@ import com.example.ghostgame.view.model.GameEvent
 import com.example.ghostgame.view.model.GameState
 import com.example.ghostgame.view.model.GridItemClicked
 import com.example.ghostgame.view.model.HideGhostsEvent
+import com.example.ghostgame.view.model.Level1
 import com.example.ghostgame.view.model.NextLevelClicked
 import com.example.ghostgame.view.model.RestartButtonClicked
 import com.example.ghostgame.view.model.ShowGhostsEvent
 import com.example.ghostgame.view.model.ShowNextLevelButton
+import com.example.ghostgame.view.model.ShowSplashImage
+import com.example.ghostgame.view.model.ShowStartButton
 import com.example.ghostgame.view.model.StartButtonClicked
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -34,10 +37,10 @@ class MainReducer(initialState: GameState) {
     private fun reduce(oldState: GameState, event: GameEvent) {
         when (event) {
             is StartButtonClicked -> {
-                setState(oldState.copy(gridShowing = true, startButtonShowing = false))
+                setState(oldState.copy(showGrid = true, startButtonShowing = false))
             }
             is RestartButtonClicked -> {
-                setState(GameState.initial())
+                setState(GameState.getNextClearLevelState(Level1, 0))
             }
             is GridItemClicked -> {
                 processGridItemClicked(oldState, event.coords)
@@ -54,7 +57,21 @@ class MainReducer(initialState: GameState) {
             is NextLevelClicked -> {
                 processNextLevelClicked(oldState)
             }
+            is ShowSplashImage -> {
+                processShowSplashImage(oldState)
+            }
+            is ShowStartButton -> {
+                processShowStartButton(oldState)
+            }
         }
+    }
+
+    private fun processShowSplashImage(oldState: GameState) {
+        setState(oldState.copy(showSplashImage = true))
+    }
+
+    private fun processShowStartButton(oldState: GameState){
+        setState(oldState.copy(startButtonShowing = true, showSplashImage = false))
     }
 
     private fun processNextLevelClicked(oldState: GameState) {

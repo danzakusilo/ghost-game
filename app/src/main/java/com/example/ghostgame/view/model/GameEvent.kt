@@ -17,3 +17,7 @@ object ShowGhostsEvent: GameEvent()
 object HideGhostsEvent: GameEvent()
 
 object NextLevelClicked: GameEvent()
+
+object ShowSplashImage: GameEvent()
+
+object ShowStartButton: GameEvent()

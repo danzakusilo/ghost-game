@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
@@ -18,11 +19,18 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.ghostgame.MainViewModel
 import com.example.ghostgame.R.string
+import kotlinx.coroutines.delay
 
 @Composable
 fun PlayScreen(viewModel: MainViewModel) {
     val state by viewModel.state.collectAsState()
     Column() {
+        if (state.needToPreviewGhosts)
+            LaunchedEffect(Unit) {
+                viewModel.showGhosts()
+                delay(1500L)
+                viewModel.hideGhosts()
+            }
         ScoreText(
             state = state,
             modifier = Modifier

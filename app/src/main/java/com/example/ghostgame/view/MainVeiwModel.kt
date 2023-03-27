@@ -11,6 +11,9 @@ import com.example.ghostgame.view.model.NextLevelClicked
 import com.example.ghostgame.view.model.RestartButtonClicked
 import com.example.ghostgame.view.model.ShowGhostsEvent
 import com.example.ghostgame.view.model.ShowNextLevelButton
+import com.example.ghostgame.view.model.ShowSplashImage
+import com.example.ghostgame.view.model.ShowStartButton
+import com.example.ghostgame.view.model.StartButtonClicked
 import kotlinx.coroutines.flow.StateFlow
 
 class MainViewModel : ViewModel() {
@@ -38,6 +41,18 @@ class MainViewModel : ViewModel() {
 
     fun nextLevelClicked(){
         sendEvent(NextLevelClicked)
+    }
+
+    fun showSplashImage(){
+        sendEvent(ShowSplashImage)
+    }
+
+    fun showStartButton(){
+        sendEvent(ShowStartButton)
+    }
+
+    fun onStartButtonClicked(){
+        sendEvent(StartButtonClicked)
     }
 
     fun onRestartClicked() {

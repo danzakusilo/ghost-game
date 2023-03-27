@@ -12,6 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import com.example.ghostgame.MainViewModel
+import com.example.ghostgame.R
 import com.example.ghostgame.view.model.GameState
 
 @Composable
@@ -24,12 +25,13 @@ fun LevelResultScreen(state: GameState, viewModel: MainViewModel, modifier: Modi
                 .align(Alignment.CenterHorizontally), 48
         )
         Box(modifier = Modifier.padding(vertical = 16.dp)) {
-            StartButton(
+            GhostButton(
                 modifier = Modifier
                     .align(Alignment.Center)
                     .background(Color.White, shape = RoundedCornerShape(24))
                     .clickable { viewModel.nextLevelClicked() }
-                    .padding(vertical = 14.dp, horizontal = 32.dp)
+                    .padding(vertical = 14.dp, horizontal = 32.dp),
+                R.string.next_level
             )
         }
     }
