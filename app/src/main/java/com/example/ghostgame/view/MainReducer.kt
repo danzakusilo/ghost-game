@@ -1,7 +1,9 @@
 package com.example.ghostgame.view
 
+import com.example.ghostgame.model.CardCorrect
 import com.example.ghostgame.model.Coords
 import com.example.ghostgame.model.Grid
+import com.example.ghostgame.model.GridCell
 import com.example.ghostgame.view.model.GameEvent
 import com.example.ghostgame.view.model.GameState
 import com.example.ghostgame.view.model.GridItemClicked
@@ -39,14 +41,39 @@ class MainReducer(initialState: GameState) {
     }
 
     private fun processGridItemClicked(oldState: GameState, coords: Coords) {
-        val oldGrid = oldState.currentGrid
-        val newGrid = oldGrid.ghostPositions.map { row ->
+        val newGrid = updateGridItemVisibility(oldState.currentGrid.ghostPositions, coords)
+        val newPlayerPoints = updatePlayerPoints(oldState, coords)
+        setState(
+            oldState.copy(
+                currentGrid = Grid(
+                    oldState.currentGrid.width,
+                    oldState.currentGrid.height,
+                    newGrid
+                ),
+                playerPoints = newPlayerPoints
+            )
+        )
+    }
+
+    private fun updatePlayerPoints(oldState: GameState, coords: Coords): Int {
+        if (oldState.currentGrid.ghostPositions[coords.y][coords.x].cardData is CardCorrect) {
+            val currentPlayerPoints = oldState.playerPoints
+            val pointsPerGuess = oldState.currentLevel.pointsPerGuess
+            return currentPlayerPoints.plus(pointsPerGuess)
+        }
+        return oldState.playerPoints
+    }
+
+    private fun updateGridItemVisibility(
+        oldGrid: List<List<GridCell>>,
+        coords: Coords
+    ): List<List<GridCell>> {
+        return oldGrid.map { row ->
             row.map { cell ->
                 if (cell.coords == coords)
                     cell.copy(isRevealed = true)
                 else cell
             }
         }
-        setState(oldState.copy(currentGrid = Grid(oldGrid.width, oldGrid.height, newGrid)))
     }
 }

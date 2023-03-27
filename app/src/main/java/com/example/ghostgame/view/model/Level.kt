@@ -12,13 +12,14 @@ import kotlin.random.Random
 sealed class Level(
     val gridWidth: Int,
     val gridHeight: Int,
-    val ghostCount: Int
+    val ghostCount: Int,
+    val pointsPerGuess: Int = 5
 ) {
     fun generateGrid(): Grid {
         val grid = MutableList(gridHeight) { MutableList(gridWidth) { Empty } }
 
         val random = Random(System.currentTimeMillis())
-        repeat(ghostCount - 1) {
+        repeat(ghostCount) {
             var x = random.nextInt(gridWidth)
             var y = random.nextInt(gridHeight)
             while (grid[y][x] != Empty) {
