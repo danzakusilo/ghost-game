@@ -10,4 +10,8 @@ class GridItemClicked(val coords: Coords): GameEvent()
 
 object RestartButtonClicked: GameEvent()
 
+object ShowNextLevelButton: GameEvent()
 
+object ShowGhostsEvent: GameEvent()
+
+object HideGhostsEvent: GameEvent()
