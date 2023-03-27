@@ -10,8 +10,8 @@ import com.example.ghostgame.ui.util.getRandomGhostImage
 import kotlin.random.Random
 
 sealed class Level(
-    val gridWidth: Int,
-    val gridHeight: Int,
+    private val gridWidth: Int,
+    private val gridHeight: Int,
     val ghostCount: Int,
     val pointsPerGuess: Int = 5,
     val nextLevel: Level?

@@ -148,9 +148,9 @@ class MainReducer(initialState: GameState) {
         oldGrid: List<List<GridCell>>,
         coords: Coords
     ): List<List<GridCell>> {
-        return oldGrid.map { row ->
-            row.map { cell ->
-                if (cell.coords == coords)
+        return oldGrid.map { colon ->
+            colon.map { cell ->
+                if (cell.coords.x == coords.x && cell.coords.y == coords.y)
                     cell.copy(isRevealed = true)
                 else cell
             }

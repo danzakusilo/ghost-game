@@ -17,7 +17,7 @@ data class GameState(
     val showNextLevelScreen: Boolean
 ) {
     companion object {
-        fun initial() = getNextClearLevelState(Level1, 0)
+        fun initial() = getNextClearLevelState(Level2, 0)
 
         fun getNextClearLevelState(level: Level, points: Int) = GameState(
             needToPreviewGhosts = true,

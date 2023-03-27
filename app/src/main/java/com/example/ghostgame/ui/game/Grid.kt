@@ -21,7 +21,7 @@ fun GameGrid(onGridItemClicked: (Int, Int) -> Unit, state: GameState) {
         verticalArrangement = Arrangement.spacedBy(4.dp)
     ) {
         items(grid.height * grid.width) { index ->
-            val row = index / grid.height
+            val row = index / grid.width
             val column = index % grid.width
             GhostCard(
                 grid.ghostPositions[row][column], onGridItemClicked,
