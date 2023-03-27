@@ -13,7 +13,8 @@ sealed class Level(
     val gridWidth: Int,
     val gridHeight: Int,
     val ghostCount: Int,
-    val pointsPerGuess: Int = 5
+    val pointsPerGuess: Int = 5,
+    val nextLevel: Level?
 ) {
     fun generateGrid(): Grid {
         val grid = MutableList(gridHeight) { MutableList(gridWidth) { Empty } }
@@ -50,21 +51,21 @@ sealed class Level(
 }
 
 object Level1 : Level(
-    4, 4, 4
+    4, 4, 4, nextLevel = Level2
 )
 
 object Level2 : Level(
-    4, 5, 5
+    4, 5, 5, nextLevel = Level3
 )
 
 object Level3 : Level(
-    4, 6, 6
+    4, 6, 6, nextLevel = Level4
 )
 
 object Level4 : Level(
-    5, 6, 7
+    5, 6, 7, nextLevel = Level5
 )
 
 object Level5 : Level(
-    5, 7, 8
+    5, 7, 8, nextLevel = null
 )

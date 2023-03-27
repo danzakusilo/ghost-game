@@ -3,7 +3,7 @@ package com.example.ghostgame.view.model
 import com.example.ghostgame.model.Grid
 
 data class GameState(
-    val isInInitialState: Boolean,
+    val needToPreviewGhosts: Boolean,
     val gridShowing: Boolean,
     val startButtonShowing: Boolean,
     val currentLevel: Level,
@@ -17,15 +17,17 @@ data class GameState(
     val showNextLevelScreen: Boolean
 ) {
     companion object {
-        fun initial() = GameState(
-            isInInitialState = false,
+        fun initial() = getNextClearLevelState(Level1, 0)
+
+        fun getNextClearLevelState(level: Level, points: Int) = GameState(
+            needToPreviewGhosts = true,
             gridShowing = false,
             startButtonShowing = false,
-            currentLevel = Level1,
-            currentGrid = Level1.generateGrid(),
-            playerPoints = 0,
-            ghostsRemaining = Level1.ghostCount,
-            clicksRemaining = Level1.ghostCount,
+            currentLevel = level,
+            currentGrid = level.generateGrid(),
+            playerPoints = points,
+            ghostsRemaining = level.ghostCount,
+            clicksRemaining = level.ghostCount,
             showGameWon = false,
             showGameLost = false,
             showGrid = true,

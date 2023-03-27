@@ -7,6 +7,7 @@ import com.example.ghostgame.view.model.GameEvent
 import com.example.ghostgame.view.model.GameState
 import com.example.ghostgame.view.model.GridItemClicked
 import com.example.ghostgame.view.model.HideGhostsEvent
+import com.example.ghostgame.view.model.NextLevelClicked
 import com.example.ghostgame.view.model.RestartButtonClicked
 import com.example.ghostgame.view.model.ShowGhostsEvent
 import com.example.ghostgame.view.model.ShowNextLevelButton
@@ -33,6 +34,10 @@ class MainViewModel : ViewModel() {
 
     fun showNextLevelButton() {
         sendEvent(ShowNextLevelButton)
+    }
+
+    fun nextLevelClicked(){
+        sendEvent(NextLevelClicked)
     }
 
     fun onRestartClicked() {

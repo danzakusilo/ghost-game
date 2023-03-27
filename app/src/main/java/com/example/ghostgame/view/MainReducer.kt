@@ -9,6 +9,7 @@ import com.example.ghostgame.view.model.GameEvent
 import com.example.ghostgame.view.model.GameState
 import com.example.ghostgame.view.model.GridItemClicked
 import com.example.ghostgame.view.model.HideGhostsEvent
+import com.example.ghostgame.view.model.NextLevelClicked
 import com.example.ghostgame.view.model.RestartButtonClicked
 import com.example.ghostgame.view.model.ShowGhostsEvent
 import com.example.ghostgame.view.model.ShowNextLevelButton
@@ -50,6 +51,20 @@ class MainReducer(initialState: GameState) {
             is HideGhostsEvent -> {
                 processHideGhostsEvent(oldState)
             }
+            is NextLevelClicked -> {
+                processNextLevelClicked(oldState)
+            }
+        }
+    }
+
+    private fun processNextLevelClicked(oldState: GameState) {
+        goToNextLevel(oldState)
+    }
+
+    private fun goToNextLevel(oldState: GameState) {
+        val oldLevel = oldState.currentLevel
+        oldLevel.nextLevel?.let { nextLevel ->
+            setState(GameState.getNextClearLevelState(nextLevel, oldState.playerPoints))
         }
     }
 
@@ -58,7 +73,7 @@ class MainReducer(initialState: GameState) {
     }
 
     private fun processHideGhostsEvent(oldState: GameState) {
-        toggleAllGhostsVisibility(oldState, false)
+        toggleAllGhostsVisibility(oldState.copy(needToPreviewGhosts = false), false)
     }
 
     private fun toggleAllGhostsVisibility(oldState: GameState, isRevealed: Boolean) {
