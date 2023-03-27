@@ -9,7 +9,8 @@ data class Grid(
 
 data class GridCell(
     val cardData: GameCard,
-    val coords: Coords
+    val coords: Coords,
+    val isRevealed: Boolean
 )
 
 data class Coords(

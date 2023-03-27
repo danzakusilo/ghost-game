@@ -1,14 +1,12 @@
 package com.example.ghostgame.view.model
 
 import androidx.compose.runtime.Composer.Companion.Empty
-import com.example.ghostgame.R
 import com.example.ghostgame.model.CardCorrect
 import com.example.ghostgame.model.CardWrong
 import com.example.ghostgame.model.Coords
 import com.example.ghostgame.model.Grid
 import com.example.ghostgame.model.GridCell
 import com.example.ghostgame.ui.util.getRandomGhostImage
-import java.util.*
 import kotlin.random.Random
 
 sealed class Level(
@@ -29,7 +27,8 @@ sealed class Level(
             }
             grid[y][x] = GridCell(
                 CardCorrect(getRandomGhostImage()),
-                Coords(x, y)
+                Coords(x, y),
+                false
             )
         }
 
@@ -38,7 +37,8 @@ sealed class Level(
                 if (grid[y][x] == Empty) {
                     grid[y][x] = GridCell(
                         CardWrong,
-                        Coords(x, y)
+                        Coords(x, y),
+                        false
                     )
                 }
             }

@@ -3,6 +3,7 @@ package com.example.ghostgame.view.model
 import com.example.ghostgame.model.Grid
 
 data class GameState(
+    val isInInitialState: Boolean,
     val gridShowing: Boolean,
     val startButtonShowing: Boolean,
     val currentLevel: Level,
@@ -14,6 +15,7 @@ data class GameState(
 ) {
     companion object {
         fun initial() = GameState(
+            isInInitialState = false,
             gridShowing = false,
             startButtonShowing = false,
             currentLevel = Level1,

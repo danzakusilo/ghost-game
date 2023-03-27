@@ -2,13 +2,12 @@ package com.example.ghostgame.ui.game
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material.Shapes
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
@@ -55,9 +54,12 @@ fun MainScreen(viewModel: MainViewModel) {
                     modifier = Modifier
                         .background(Color.LightGray, shape = CircleShape)
                         .padding(8.dp)
+                        .clickable {
+                            viewModel.onRestartClicked()
+                        }
                 )
             }
-            GameGrid(grid = state.currentGrid, viewModel::onGridItemClicked)
+            GameGrid(viewModel::onGridItemClicked, state)
         }
     }
 }

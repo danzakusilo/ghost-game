@@ -8,4 +8,6 @@ object StartButtonClicked: GameEvent()
 
 class GridItemClicked(val coords: Coords): GameEvent()
 
+object RestartButtonClicked: GameEvent()
+
 

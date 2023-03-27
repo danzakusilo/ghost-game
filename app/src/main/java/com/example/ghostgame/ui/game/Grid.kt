@@ -8,10 +8,12 @@ import androidx.compose.foundation.lazy.LazyVerticalGrid
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.unit.dp
 import com.example.ghostgame.model.Grid
+import com.example.ghostgame.view.model.GameState
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun GameGrid(grid: Grid, onGridItemClicked: (Int, Int) -> Unit) {
+fun GameGrid(onGridItemClicked: (Int, Int) -> Unit, state: GameState) {
+    val grid = state.currentGrid
     LazyVerticalGrid(
         cells = GridCells.Fixed(grid.width),
         contentPadding = PaddingValues(16.dp),
@@ -21,7 +23,10 @@ fun GameGrid(grid: Grid, onGridItemClicked: (Int, Int) -> Unit) {
         items(grid.height * grid.width) { index ->
             val row = index / grid.height
             val column = index % grid.width
-            GhostCard(grid.ghostPositions[row][column], onGridItemClicked)
+            GhostCard(
+                grid.ghostPositions[row][column], onGridItemClicked,
+                grid.ghostPositions[row][column].isRevealed
+            )
         }
     }
 }
