@@ -59,6 +59,8 @@ fun MainScreen(viewModel: MainViewModel) {
         }
         AnimatedVisibility(
             visible = state.showNextLevelScreen,
+            enter = fadeIn(),
+            exit = fadeOut(),
             modifier = Modifier.align(Alignment.Center)
         ) {
             LevelResultScreen(
