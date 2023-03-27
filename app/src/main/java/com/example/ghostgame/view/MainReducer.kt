@@ -82,7 +82,7 @@ class MainReducer(initialState: GameState) {
         val oldLevel = oldState.currentLevel
         oldLevel.nextLevel?.let { nextLevel ->
             setState(GameState.getNextClearLevelState(nextLevel, oldState.playerPoints))
-        }
+        } ?: setState(GameState.getNextClearLevelState(Level1, 0))
     }
 
     private fun processShowGhostsEvent(oldState: GameState) {

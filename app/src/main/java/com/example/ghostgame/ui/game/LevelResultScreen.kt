@@ -31,7 +31,7 @@ fun LevelResultScreen(state: GameState, viewModel: MainViewModel, modifier: Modi
                     .background(Color.White, shape = RoundedCornerShape(24))
                     .clickable { viewModel.nextLevelClicked() }
                     .padding(vertical = 14.dp, horizontal = 32.dp),
-                R.string.next_level
+                if (state.currentLevel.nextLevel != null) R.string.next_level else R.string.restart
             )
         }
     }
