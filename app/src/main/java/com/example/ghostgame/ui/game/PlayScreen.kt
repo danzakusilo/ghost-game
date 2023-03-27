@@ -42,17 +42,17 @@ fun PlayScreen(viewModel: MainViewModel) {
             modifier = Modifier
                 .padding(top = 8.dp)
                 .align(Alignment.CenterHorizontally)
+                .clickable {
+                    viewModel.onRestartClicked()
+                }
         ) {
             Text(
                 text = stringResource(string.restart),
                 color = Color.White,
-                fontSize = 20.sp,
+                fontSize = 16.sp,
                 modifier = Modifier
                     .background(Color.LightGray, shape = CircleShape)
-                    .padding(8.dp)
-                    .clickable {
-                        viewModel.onRestartClicked()
-                    }
+                    .padding(vertical = 12.dp, horizontal = 24.dp)
             )
         }
         GameGrid(viewModel::onGridItemClicked, state)

@@ -28,7 +28,7 @@ fun LevelResultScreen(state: GameState, viewModel: MainViewModel, modifier: Modi
             GhostButton(
                 modifier = Modifier
                     .align(Alignment.Center)
-                    .background(Color.White, shape = RoundedCornerShape(24))
+                    .background(Color.White, shape = RoundedCornerShape(60))
                     .clickable { viewModel.nextLevelClicked() }
                     .padding(vertical = 14.dp, horizontal = 32.dp),
                 if (state.currentLevel.nextLevel != null) R.string.next_level else R.string.restart

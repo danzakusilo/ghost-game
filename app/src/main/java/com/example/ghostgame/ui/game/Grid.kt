@@ -25,7 +25,8 @@ fun GameGrid(onGridItemClicked: (Int, Int) -> Unit, state: GameState) {
             val column = index % grid.width
             GhostCard(
                 grid.ghostPositions[row][column], onGridItemClicked,
-                grid.ghostPositions[row][column].isRevealed
+                grid.ghostPositions[row][column].isRevealed,
+                state
             )
         }
     }

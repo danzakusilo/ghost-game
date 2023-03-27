@@ -108,9 +108,9 @@ fun SplashSequence(viewModel: MainViewModel, state: GameState, modifier: Modifie
             GhostButton(
                 modifier = Modifier
                     .align(Alignment.Center)
-                    .background(Color.White, shape = RoundedCornerShape(24))
+                    .background(Color.White, shape = RoundedCornerShape(60))
                     .clickable { viewModel.onStartButtonClicked() }
-                    .padding(vertical = 16.dp, horizontal = 48.dp),
+                    .padding(vertical = 16.dp, horizontal = 80.dp),
                 string.start
             )
         }

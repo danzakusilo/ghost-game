@@ -28,10 +28,19 @@ const val CELL_WIDTH = 72
 const val CELL_HEIGHT = 72
 
 @Composable
-fun GhostCard(cellData: GridCell, onCardClicked: (Int, Int) -> Unit, isRevealed: Boolean) {
+fun GhostCard(
+    cellData: GridCell,
+    onCardClicked: (Int, Int) -> Unit,
+    isRevealed: Boolean,
+    state: GameState
+) {
     val backgroundColor =
-        if (isRevealed) cellData.cardData.revealedBackgroundColor
-        else cellData.cardData.defaultBackgroundColor
+        if (isRevealed){
+            if (state.needToPreviewGhosts)
+                cellData.cardData.previewColor
+            else
+                cellData.cardData.revealedBackgroundColor
+        } else cellData.cardData.defaultBackgroundColor
     Box(
         modifier = Modifier
             .clickable {
